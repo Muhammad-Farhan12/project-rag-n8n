@@ -1,0 +1,102 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "*"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3ad5dd0c-62cb-49b4-af95-518e108f7668",
+      "name": "Telegram Trigger",
+      "webhookId": "11309949-a39f-403e-938a-a116c9ea50aa",
+      "credentials": {
+        "telegramApi": {
+          "id": "HAuSe4gTgEzf6FI1",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "={{ $json.update_id }}{{ $json.message }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "7816e6a7-cdd1-4ae1-a128-d4461cd158af",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "phL6EDQnnwhfmzf6",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Message a model": [
+      {
+        "json": {
+          "name": "First item",
+          "code": 1
+        }
+      },
+      {
+        "json": {
+          "name": "Second item",
+          "code": 2
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ee607e24-3f0e-4561-8413-19a303224682",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ab32be089e4e5b7a5d36ccea75740d92cc73bc8f62827853c3b255ef7cf9c4df"
+  },
+  "id": "7DNrfQ18Ov013dO9",
+  "tags": []
+}
