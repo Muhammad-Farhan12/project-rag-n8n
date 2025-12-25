@@ -1,0 +1,159 @@
+/* --- CSS GAYA DARK MODE --- */
+:root {
+    --bg-color: #050505;
+    --chat-bg: #111111;
+    --accent: #a855f7; /* Ungu neon */
+    --accent-grad: linear-gradient(90deg, #a855f7, #6366f1);
+    --text-color: #ffffff;
+    --user-bubble: #262626;
+    --bot-bubble: #1a1a1a;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Hero Header (Judul Besar) */
+.hero {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    animation: fadeIn 1.5s ease;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+.gradient-text {
+    background: var(--accent-grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    color: #888;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+/* Container Chat */
+.chat-container {
+    width: 90%;
+    max-width: 700px;
+    flex-grow: 1;
+    background: rgba(20, 20, 20, 0.5);
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 0 50px rgba(168, 85, 247, 0.1);
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+}
+
+/* Bubble Chat */
+.message {
+    max-width: 80%;
+    padding: 12px 18px;
+    border-radius: 18px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    position: relative;
+    animation: popIn 0.3s ease;
+}
+
+.bot-message {
+    align-self: flex-start;
+    background-color: var(--bot-bubble);
+    color: #ddd;
+    border: 1px solid #333;
+    border-bottom-left-radius: 4px;
+}
+
+.bot-title {
+    font-size: 0.7rem;
+    color: var(--accent);
+    margin-bottom: 5px;
+    font-weight: bold;
+    display: block;
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: var(--user-bubble);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+/* Input Area (Melayang di bawah) */
+.input-area {
+    width: 90%;
+    max-width: 700px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.input-box {
+    width: 100%;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 15px 50px 15px 20px; /* Space for button */
+    border-radius: 50px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    box-sizing: border-box; 
+    transition: all 0.3s;
+}
+
+.input-box:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+}
+
+.send-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--accent-grad);
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.send-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Animasi */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+/* Scrollbar Cantik */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
