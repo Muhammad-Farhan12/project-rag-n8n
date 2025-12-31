@@ -1,0 +1,265 @@
+:root {
+    --p4-yellow: #FFE600;
+    --p4-orange: #FF7D00;
+    --p4-black: #111111;
+    --p4-white: #ffffff;
+    --p4-gray: #333333;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', sans-serif; /* Font standar yang bersih tapi tegas */
+    background-color: var(--p4-yellow);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- BACKGROUND ANIMATION --- */
+.bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        var(--p4-yellow),
+        var(--p4-yellow) 20px,
+        #f5d800 20px,
+        #f5d800 40px
+    );
+    z-index: -2;
+}
+
+/* Efek TV Static Halus */
+.tv-noise {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8L3N2Zz4=');
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: -1;
+    animation: staticNoise 0.5s infinite steps(5);
+}
+
+@keyframes staticNoise {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(5px); }
+}
+
+.main-container {
+    width: 95%;
+    max-width: 800px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* --- HEADER --- */
+.p4-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    transform: rotate(-2deg); /* Miring sedikit khas P4 */
+}
+
+.date-box {
+    background: black;
+    color: var(--p4-yellow);
+    padding: 10px 15px;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.5rem;
+    border: 3px solid white;
+    margin-right: 15px;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
+}
+
+.title-box h1 {
+    font-family: 'Bangers', cursive;
+    font-size: 3rem;
+    margin: 0;
+    color: black;
+    text-shadow: 2px 2px 0px white;
+    letter-spacing: 2px;
+}
+
+.title-box p {
+    margin: 0;
+    font-weight: bold;
+    background: black;
+    color: white;
+    display: inline-block;
+    padding: 2px 8px;
+    transform: skewX(-10deg);
+}
+
+/* --- CHAT AREA --- */
+.tv-frame {
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.85);
+    border: 4px solid white;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    /* Bentuk TV Frame sedikit cembung */
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+}
+
+.chat-container {
+    height: 100%;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- BUBBLES --- */
+.message {
+    max-width: 80%;
+    display: flex;
+    align-items: flex-end;
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.message .bubble-content {
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    position: relative;
+    clip-path: polygon(0% 0%, 100% 0%, 95% 100%, 5% 100%); /* Bentuk asimetris */
+}
+
+/* Bot Style */
+.bot-message {
+    align-self: flex-start;
+}
+.bot-message .avatar-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--p4-yellow);
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.7rem;
+    color: black;
+    box-shadow: 0 0 10px var(--p4-yellow);
+}
+.bot-message .bubble-content {
+    background: white;
+    color: black;
+    border: 3px solid var(--p4-yellow);
+    transform: skewX(-5deg);
+}
+
+/* User Style */
+.user-message {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+.user-message .bubble-content {
+    background: var(--p4-yellow);
+    color: black;
+    border: 3px solid black;
+    transform: skewX(5deg);
+    font-weight: bold;
+}
+
+/* --- INPUT AREA --- */
+.input-area {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    transform: rotate(1deg);
+}
+
+.input-wrapper {
+    flex-grow: 1;
+    background: black;
+    padding: 5px;
+    transform: skewX(-15deg);
+    border: 2px solid white;
+}
+
+.input-box {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+    padding: 0 20px;
+    outline: none;
+    transform: skewX(15deg); /* Mengembalikan teks agar tegak */
+}
+
+.input-box::placeholder {
+    color: #888;
+}
+
+/* BUTTON */
+.send-btn {
+    width: 120px;
+    background: none;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    font-family: 'Bangers', cursive;
+    font-size: 1.5rem;
+    color: black;
+    transform: skewX(-10deg);
+    transition: transform 0.1s;
+}
+
+.send-btn span {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.send-btn .btn-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--p4-orange);
+    border: 3px solid white;
+    z-index: 1;
+    transition: all 0.2s;
+}
+
+/* Hover Effect Khas Persona (Goyang & Ganti Warna) */
+.send-btn:hover .btn-bg {
+    background: var(--p4-yellow);
+    border-color: black;
+    transform: translate(-3px, -3px);
+    box-shadow: 5px 5px 0 black;
+}
+
+.send-btn:active {
+    transform: skewX(-10deg) scale(0.95);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: black; }
+::-webkit-scrollbar-thumb { background: var(--p4-yellow); border: 2px solid white; }
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+}

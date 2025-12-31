@@ -1,0 +1,14 @@
+tunnel: 697f998b-a651-41bd-a04a-fb0d7e7d788f
+credentials-file: C:\Users\LENOVO\.cloudflared\697f998b-a651-41bd-a04a-fb0d7e7d788f.json
+
+ingress:
+  # Aturan 1: Akses ke n8n editor
+  - hostname: n8n.parhanrag.my.id
+    service: http://localhost:5678
+
+  # Aturan 2: Akses ke webhook
+  - hostname: webhook.parhanrag.my.id
+    service: http://localhost:5678
+
+  # Aturan terakhir: Jika salah alamat, kasih error 404
+  - service: http_status:404
